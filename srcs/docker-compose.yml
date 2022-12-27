@@ -1,30 +1,17 @@
-version: '3.3'
+version: '3'
 
 services:
-        nginx:
-                #build:
-                #context: ./requirements/nginx
-                image: nginx
-                restart: always
-                ports:
-                        - 80:80
-                container_name: nginx
-
-
-        mariadb:
-                #build:
-                #        context: ./requirements/mariadb
-                image: mariadb
-                restart: always
-                container_name: mariadb
-
-
-        wordpress:
-                #build:
-                #        context: ./requirements/wordpress
-                image: wordpress
-                restart: always
-                #ports:
-                #        - "9000:9000"
-                container_name: wordpress
-
+  nginx:
+    build:
+      context: .
+      dockerfile: requirements/nginx/Dockerfile
+    container_name: nginx
+      #    depends_on:
+      #      - wordpress
+    ports:
+      - "443:443"
+    volumes:
+      - ./requirements/nginx/conf/:/etc/nginx/http.d/
+      - ./requirements/nginx/tools:/etc/nginx/ssl/
+      - /home/${USER}/simple_docker_nginx_html/public/html:/var/www/
+    restart: always

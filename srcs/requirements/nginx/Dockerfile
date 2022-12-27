@@ -1,5 +1,7 @@
-FROM debian:buster
-WORKDIR /tmp/nginx/
-COPY .
-RUN chmod +x install.sh && ./instal.sh && rm install.sh
-CMD ["nginx", "-g", "deamon off;"]
+FROM alpine:3.17.0
+
+RUN apk update && apk upgrade && apk add --no-cache nginx
+
+EXPOSE 443
+
+CMD ["nginx", "-g", "daemon off;"]
