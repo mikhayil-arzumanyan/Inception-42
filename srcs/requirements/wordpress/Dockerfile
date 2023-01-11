@@ -34,7 +34,7 @@ RUN wget https://wordpress.org/latest.zip && \
     cp -rf wordpress/* . && \
     rm -rf wordpress latest.zip
 COPY ./requirements/wordpress/conf/wp-config-create.sh .
-COPY ./requirements/wordpress/tools/make_dir.sh ./
+COPY ./requirements/wordpress/tools/make_dir.sh .
 RUN sh wp-config-create.sh && rm wp-config-create.sh && \
     chmod -R 0777 wp-content/
 RUN chmod 766 ./make_dir.sh;
