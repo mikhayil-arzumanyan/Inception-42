@@ -40,7 +40,7 @@ RUN sh wp-config-create.sh && rm wp-config-create.sh && \
 RUN chmod 766 ./make_dir.sh;
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
     && chmod +x wp-cli.phar \
-    && mv wp-cli.phar /usr/local/bin/wp
+    && mv wp-cli.phar /usr/local/bin/wp 
 ENTRYPOINT ["sh", "/var/www/make_dir.sh"]
 
 CMD ["/usr/sbin/php-fpm8", "-F"]
