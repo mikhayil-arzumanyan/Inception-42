@@ -27,6 +27,7 @@ fclean:
 	@printf "Total clean of all configurations docker\n"
 	@docker stop $$(docker ps -qa)
 	@docker system prune --all --force --volumes
+	@docker volume rm srcs_db-volume srcs_wp-volume
 	@docker network prune --force
 	@docker volume prune --force
 	@sudo rm -rf ~/data/wordpress/*
